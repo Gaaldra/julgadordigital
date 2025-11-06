@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Julgamento Digital</title>
+    <!-- Carrega o Tailwind CSS para estilização moderna e responsiva -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="./index.css" rel="stylesheet" />
+  </head>
+  <body class="p-4 flex flex-col items-center justify-center min-h-screen">
+    <div class="text-center text-white mb-8 w-full max-w-xl">
+      <h1 class="text-3xl font-extrabold mb-2 text-green-400">
+        Julgamento Digital
+      </h1>
+      <p class="text-gray-400">Decida: o conteúdo é seguro ou malicioso?</p>
+      <div
+        id="scoreDisplay"
+        class="text-xl font-bold mt-4 p-2 bg-gray-800 rounded-lg shadow-md"
+      >
+        Pontuação: 0
+      </div>
+    </div>
+
+    <!-- Tela Inicial/Fim de Jogo -->
+    <div
+      id="introScreen"
+      class="text-center text-white p-6 bg-gray-800 rounded-xl shadow-2xl transition duration-500 ease-in-out"
+    >
+      <h2 class="text-2xl font-bold mb-4">Teste Seu Olhar!</h2>
+      <p class="mb-6 text-gray-300">
+        Seu objetivo é identificar se o conteúdo (oferta, notícia, pop-up) é
+        seguro e legítimo ou se é uma ameaça digital ou golpe.
+      </p>
+      <button
+        id="startGameButton"
+        class="bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg"
+      >
+        Começar o Jogo!
+      </button>
+    </div>
+
+    <!-- Área Principal do Jogo (O Card e Ações) -->
+    <div id="gameContainer" class="hidden w-full max-w-lg p-4">
+      <div class="card-container mb-6">
+        <div id="gameCard" class="game-card">
+          <img
+            id="cardImage"
+            class="card-image"
+            src=""
+            alt="Conteúdo para Julgamento"
+          />
+        </div>
+      </div>
+
+      <!-- Botões de Ação -->
+      <div class="flex flex-col justify-between space-y-4 w-full max-w-lg">
+        <button id="confirmButton" class="btn-action btn-confirm w-full flex-1">
+          <span>Conteúdo Seguro</span>
+        </button>
+        <button id="denyButton" class="btn-action btn-deny w-full flex-1">
+          <span id="denyAction">Conteúdo Inseguro</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- NOVO: Modal de Feedback (Aparece após a escolha) -->
+    <div
+      id="feedbackModal"
+      class="hidden fixed inset-0 z-40 flex items-center justify-center p-4"
+    >
+      <div class="absolute inset-0 bg-black opacity-80"></div>
+      <!-- Overlay -->
+      <div
+        id="feedbackContent"
+        class="relative max-w-lg w-full p-6 rounded-xl shadow-2xl text-center text-white transform transition-all duration-300 scale-90"
+      >
+        <p id="modalMessage" class="text-lg font-semibold mb-6 p-4 rounded-lg"></p>
+        <button
+          id="advanceButton"
+          class="hidden bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50"
+          disabled
+        >
+          AVANÇAR
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal de Visualização de Imagem (Lightbox) -->
+    <div
+      id="imageModal"
+      class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+      onclick="closeModal()"
+    >
+      <div
+        class="relative max-w-full max-h-full"
+        onclick="event.stopPropagation()"
+      >
+        <!-- A Imagem Expandida -->
+        <img
+          id="modalImage"
+          class="max-h-[90vh] max-w-[90vw] rounded-lg shadow-2xl relative"
+          src=""
+          alt="Imagem Expandida"
+        />
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
