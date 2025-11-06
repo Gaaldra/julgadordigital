@@ -42,6 +42,16 @@ const cards = [
     feedbackMessage:
       "Senhas que usam nome, datas de aniversário ou sequências são facilmente quebradas. Recusar e criar uma senha complexa é fundamental para proteger sua conta e seus jogos. Continuar com essa senha fraca compromete sua conta na Steam. Se um hacker descobrir essa senha, ele pode tentar usá-la em seu e-mail ou outras redes sociais.",
   },
+  {
+    imageUrl: "./assets/img08.png",
+    isMalicious: true,
+    feedbackMessage: "Trata-se de uma tentativa de golpe/phishing utilizando o nome do Google. O recrutador online que oferece ganhos de R$500 a R$2000 por dia para assistir a anúncios publicitários é um padrão comum em fraudes. Embora o CNPJ (06.947.283/0001-60) seja de fato ligado ao Google International LLC e o endereço seja o de um dos escritórios no Brasil (Av. Brig. Faria Lima, 3477, Itaim Bibi), os detalhes da conversa, como o número de telefone registrado na Índia e a proposta de 'trabalho' irreal, confirmam a natureza maliciosa da abordagem, que tenta ganhar a confiança da vítima usando dados reais da empresa.",
+  },
+  {
+    imageUrl: "./assets/img09.png",
+    isMalicious: false,
+    feedbackMessage: "A imagem é uma fotografia de paisagem natural, mostrando apenas uma praia com areia clara. Não há elementos maliciosos, conteúdo sensível ou tentativa de fraude na imagem. Ela não representa um risco para sua segurança digital.",
+  }
 ];
 
 // Variáveis de Estado
