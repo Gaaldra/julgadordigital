@@ -128,7 +128,7 @@ function renderCard(index) {
     introScreen.classList.remove("hidden");
     introScreen.innerHTML = `
             <h2 class="text-3xl font-bold mb-4 text-green-400">Fim do Teste!</h2>
-            <p class="mb-6 text-2xl text-gray-300">Sua pontuação final é: <span class="font-extrabold text-white">${score}</span>/${cards.length}</p>
+            <p class="mb-6 text-2xl text-gray-300">Sua pontuação final é: <span class="font-extrabold text-white">${score}</span></p>
             <p class="mb-8 text-gray-400">Você conseguiu identificar a segurança dos conteúdos digitais? Tente novamente para melhorar!</p>
             <button id="restartGameButton" class="bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
                 Jogar Novamente
