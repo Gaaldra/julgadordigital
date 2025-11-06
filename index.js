@@ -192,6 +192,7 @@ function handleChoice(isMalicious) {
 function startGame() {
   score = 0;
   currentCardIndex = 0;
+  winstreak = 0;
   shuffledCards = shuffleArray(cards.slice());
   updateScore(0); // Reinicia a pontuação no display
   introScreen.classList.add("hidden");
