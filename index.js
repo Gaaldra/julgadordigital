@@ -9,32 +9,38 @@ const cards = [
   {
     imageUrl: "./assets/img02.png",
     isMalicious: false,
-    feedbackMessage: "Esta é uma fonte legítima e verificada. Você pode entrar com suas credenciais com segurança. Recusar o login no site oficial e seguro do seu banco impede que você acesse suas finanças. Verifique sempre a URL antes de recusar.",
+    feedbackMessage:
+      "Esta é uma fonte legítima e verificada. Você pode entrar com suas credenciais com segurança. Recusar o login no site oficial e seguro do seu banco impede que você acesse suas finanças. Verifique sempre a URL antes de recusar.",
   },
   {
     imageUrl: "./assets/img03.png",
     isMalicious: true,
-    feedbackMessage: "Exibir códigos de barras ou QR Codes de documentos de viagem (mesmo após usados) pode ser usado para adquirir informações pessoais. Postá-los pode expor seu nome, detalhes de voo e até possibilitar a clonagem do seu bilhete. Guarde para si!",
+    feedbackMessage:
+      "Exibir códigos de barras ou QR Codes de documentos de viagem (mesmo após usados) pode ser usado para adquirir informações pessoais. Postá-los pode expor seu nome, detalhes de voo e até possibilitar a clonagem do seu bilhete. Guarde para si!",
   },
   {
     imageUrl: "./assets/img04.png",
     isMalicious: true,
-    feedbackMessage: "Divulgar que sua casa estará vazia por um longo período é um convite para roubos. O ideal é postar a foto das férias apenas ao voltar para casa.",
+    feedbackMessage:
+      "Divulgar que sua casa estará vazia por um longo período é um convite para roubos. O ideal é postar a foto das férias apenas ao voltar para casa.",
   },
   {
     imageUrl: "./assets/img05.png",
     isMalicious: true,
-    feedbackMessage: "Nunca compartilhe dados sensíveis (celular, endereço) em comentários públicos. Isso previne assédio, golpes, stalking e riscos de privacidade. Use sempre a mensagem privada (DM).",
+    feedbackMessage:
+      "Nunca compartilhe dados sensíveis (celular, endereço) em comentários públicos. Isso previne assédio, golpes, stalking e riscos de privacidade. Use sempre a mensagem privada (DM).",
   },
   {
     imageUrl: "./assets/img06.png",
     isMalicious: true,
-    feedbackMessage: "Publicar o print sem borrar o número de telefone viola a privacidade da pessoa. Sempre oculte informações pessoais (números, fotos e nomes) de terceiros antes de postar. Exposição de dados pessoais alheios pode gerar problemas de assédio, spam ou até processos.",
+    feedbackMessage:
+      "Publicar o print sem borrar o número de telefone viola a privacidade da pessoa. Sempre oculte informações pessoais (números, fotos e nomes) de terceiros antes de postar. Exposição de dados pessoais alheios pode gerar problemas de assédio, spam ou até processos.",
   },
   {
     imageUrl: "./assets/img07.png",
     isMalicious: true,
-    feedbackMessage: "Senhas que usam nome, datas de aniversário ou sequências são facilmente quebradas. Recusar e criar uma senha complexa é fundamental para proteger sua conta e seus jogos. Continuar com essa senha fraca compromete sua conta na Steam. Se um hacker descobrir essa senha, ele pode tentar usá-la em seu e-mail ou outras redes sociais.",
+    feedbackMessage:
+      "Senhas que usam nome, datas de aniversário ou sequências são facilmente quebradas. Recusar e criar uma senha complexa é fundamental para proteger sua conta e seus jogos. Continuar com essa senha fraca compromete sua conta na Steam. Se um hacker descobrir essa senha, ele pode tentar usá-la em seu e-mail ou outras redes sociais.",
   },
 ];
 
@@ -43,6 +49,9 @@ let score = 0;
 let currentCardIndex = 0;
 let isProcessing = false;
 let shuffledCards = [];
+let winstreak = 0; // Sequência de acertos
+const baseScore = 10;
+const winstreakBonus = 5;
 
 // Referências DOM
 const introScreen = document.getElementById("introScreen");
@@ -93,7 +102,7 @@ function closeModal() {
 
 function updateScore(points = 0) {
   score += points;
-  scoreDisplay.textContent = `Pontuação: ${score}`;
+  scoreDisplay.textContent = `Pontuação: ${score} (🔥 ${winstreak})`;
 }
 
 // NOVO: Função para avançar para o próximo cartão
@@ -148,9 +157,13 @@ function handleChoice(isMalicious) {
   modalMessage.classList.remove("bg-yellow-500", "bg-red-500", "bg-green-500");
 
   if (isCorrect) {
-    updateScore(1);
+    const pointsEarned = baseScore + (winstreak * winstreakBonus);
+    winstreak++;
+    updateScore(pointsEarned);
     modalMessage.classList.add("bg-green-500");
   } else {
+    winstreak = 0;
+    updateScore(0); // Atualiza display sem adicionar pontos
     modalMessage.classList.add("bg-red-500");
   }
 
